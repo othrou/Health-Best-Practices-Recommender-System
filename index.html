@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holistic AI - Votre Conseiller Bien-être</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Custom scrollbar for a subtle look */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+        
+        /* Smooth transitions for all elements */
+        .transition-all-300 {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Floating animation for icons */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Animation for the progress bar */
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .animate-progress {
+            animation: progress 2s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="fixed top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-purple-200 rounded-full opacity-50 blur-3xl"></div>
+    <div class="fixed bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-96 h-96 bg-indigo-200 rounded-full opacity-50 blur-3xl"></div>
+
+    <div class="w-full max-w-6xl mx-auto bg-white/70 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden border border-slate-200/50 transition-all-300">
+        
+        <header class="relative bg-gradient-to-br from-indigo-600 to-purple-600 p-6 text-center text-white overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="a" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M16 4.5l-11.5 6.64V25.5L16 32l11.5-6.64V11.14z" fill="none" stroke="#fff" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#a)"/></svg>
+            </div>
+            <div class="relative">
+                <h1 class="title-font text-4xl md:text-5xl font-bold mb-2">Conseiller Bien-être Holistique</h1>
+                <p class="text-indigo-200 max-w-xl mx-auto">Découvrez des recommandations personnalisées pour votre bien-être grâce à notre IA</p>
+            </div>
+             <!-- auth buttons -->
+            <div class="absolute top-4 right-4 flex gap-2">
+                <button id="login-btn" onclick="app.showAuthModal('login')" class="text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full transition">Connexion</button>
+                <button id="register-btn" onclick="app.showAuthModal('register')" class="text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full transition">Inscription</button>
+                <button id="logout-btn" onclick="app.logout()" class="text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full transition hidden">Déconnexion</button>
+            </div>
+        </header>
+
+        <main id="app-container" class="p-6 md:p-10">
+
+            <div id="welcome-view" class="text-center space-y-8 animate__animated animate__fadeIn">
+                <div class="space-y-4">
+                    <div class="inline-block p-4 bg-indigo-100 rounded-full float-animation">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl font-semibold text-slate-800">Comment souhaitez-vous commencer ?</h2>
+                    <p class="text-slate-500 max-w-md mx-auto">Choisissez la méthode qui vous convient pour recevoir des recommandations adaptées à vos besoins.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                    <button onclick="app.setMode('freeText')" class="group bg-white border border-slate-200 rounded-xl p-6 text-left hover:border-indigo-400 hover:shadow-lg hover:-translate-y-1 transition-all-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500">
+                        <div class="flex justify-between items-start">
+                            <div class="space-y-1">
+                                <h3 class="text-lg font-semibold text-slate-800">Décrire mes symptômes</h3>
+                                <p class="text-sm text-slate-500">Parlez librement de ce que vous ressentez.</p>
+                            </div>
+                            <div class="p-2 bg-indigo-50 rounded-lg text-indigo-500 group-hover:bg-indigo-100 transition-all-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-indigo-600 font-semibold flex items-center">
+                            Commencer
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                        </div>
+                    </button>
+                    
+                    <button onclick="app.setMode('questionnaire')" class="group bg-white border border-slate-200 rounded-xl p-6 text-left hover:border-emerald-400 hover:shadow-lg hover:-translate-y-1 transition-all-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-emerald-500">
+                        <div class="flex justify-between items-start">
+                           <div class="space-y-1">
+                                <h3 class="text-lg font-semibold text-slate-800">Questionnaire guidé</h3>
+                                <p class="text-sm text-slate-500">Répondez à quelques questions pour une analyse précise.</p>
+                           </div>
+                           <div class="p-2 bg-emerald-50 rounded-lg text-emerald-500 group-hover:bg-emerald-100 transition-all-300">
+                               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                           </div>
+                        </div>
+                         <div class="mt-6 text-emerald-600 font-semibold flex items-center">
+                            Commencer
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="free-text-view" class="hidden space-y-6 animate__animated animate__fadeIn">
+                <button onclick="app.reset()" class="flex items-center text-sm text-indigo-600 hover:text-indigo-800 font-semibold transition-all-300 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                    Retour
+                </button>
+                
+                <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                    <label for="free-text-input" class="block text-md font-semibold text-slate-800 mb-2">Décrivez ce que vous ressentez :</label>
+                    <textarea id="free-text-input" rows="6" class="w-full p-4 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all-300 placeholder-slate-400 text-slate-700" placeholder="Exemple : J'ai des maux de tête fréquents depuis deux semaines, surtout en fin de journée. Je me sens également très fatigué et stressé par mon travail..."></textarea>
+                    <button onclick="app.submitFreeText()" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" /></svg>
+                        Obtenir ma recommandation
+                    </button>
+                </div>
+            </div>
+
+            <div id="questionnaire-view" class="hidden space-y-6 animate__animated animate__fadeIn">
+                <button onclick="app.reset()" class="flex items-center text-sm text-indigo-600 hover:text-indigo-800 font-semibold transition-all-300 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                    Retour
+                </button>
+                
+                <div id="question-container" class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                    </div>
+                
+                 <div class="bg-indigo-50 rounded-lg p-4 flex items-start border border-indigo-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500 mt-0.5 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <p class="text-sm text-indigo-800">Répondez aussi précisément que possible pour obtenir la meilleure recommandation.</p>
+                </div>
+            </div>
+
+            <div id="loading-view" class="hidden text-center space-y-6 py-12 animate__animated animate__fadeIn">
+                <div class="flex justify-center">
+                    <div class="relative h-20 w-20">
+                        <div class="h-full w-full rounded-full bg-indigo-100 animate-ping absolute"></div>
+                        <div class="h-full w-full rounded-full bg-indigo-50 flex items-center justify-center relative border border-indigo-200">
+                            <svg class="animate-spin h-10 w-10 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-2xl font-semibold text-slate-800">Analyse en cours...</h3>
+                    <p class="text-slate-500 max-w-md mx-auto">Notre IA analyse vos réponses pour vous proposer la meilleure solution.</p>
+                </div>
+                <div class="pt-4 max-w-sm mx-auto">
+                    <div class="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full animate-progress"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="results-view" class="hidden space-y-8 animate__animated animate__fadeIn">
+                <div class="text-center space-y-3">
+                    <div class="inline-flex items-center justify-center bg-green-100 rounded-full p-3 border-4 border-white shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Votre Recommandation Personnalisée</h2>
+                    <p class="text-slate-500">Basée sur notre analyse de vos réponses.</p>
+                </div>
+                
+                <div id="results-content" class="p-6 md:p-8 bg-slate-50 border border-slate-200 rounded-2xl shadow-inner">
+                    </div>
+                
+                <div class="space-y-6 bg-white p-6 rounded-2xl border border-slate-200">
+                     <div class="text-center">
+                        <p class="text-lg font-semibold text-slate-800">Votre avis est précieux !</p>
+                        <p class="text-sm text-slate-500 mt-1">Aidez-nous à améliorer nos recommandations.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-center gap-4">
+                        <label for="feedback-rating" class="text-slate-700 font-medium flex-shrink-0">Notez cette recommandation : </label>
+                        <select id="feedback-rating" class="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                            <option value="5">5 - Très satisfait</option>
+                            <option value="4">4 - Satisfait</option>
+                            <option value="3">3 - Moyennement satisfait</option>
+                            <option value="2">2 - Insatisfait</option>
+                            <option value="1">1 - Très insatisfait</option>
+                        </select>
+                    </div>
+                    <div>
+                        <textarea id="feedback-comment" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" rows="3" placeholder="Laissez un commentaire (optionnel)..."></textarea>
+                    </div>
+                    <button onclick="app.submitFeedback()" class="w-full bg-emerald-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-emerald-700 hover:-translate-y-0.5 transition-all-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-emerald-500">
+                        Soumettre mon avis
+                    </button>
+                </div>
+                
+                <button onclick="app.reset()" class="w-full bg-indigo-500/75 text-slate-700 font-semibold py-3 px-6 rounded-lg hover:bg-slate-300 transition-all-300 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                    Recommencer une nouvelle analyse
+                </button>
+            </div>
+
+
+            <div id="error-view" class="hidden text-center space-y-6 p-8 animate__animated animate__fadeIn">
+                <div class="inline-flex items-center justify-center bg-red-100 rounded-full p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-2xl font-semibold text-red-800">Une erreur est survenue</h3>
+                    <p id="error-message" class="text-red-600 bg-red-50 p-3 rounded-lg"></p>
+                </div>
+                <button onclick="app.reset()" class="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-all-300 hover:-translate-y-0.5">
+                    Réessayer
+                </button>
+            </div>
+        </main>
+
+        <footer class="bg-slate-50 p-4 text-center text-sm text-slate-500 border-t border-slate-200/80">
+            <p>Holistic AI &copy; 2025 - Tous droits réservés</p>
+        </footer>
+    </div>
+
+        <!-- Auth Modals -->
+    <div id="auth-modal-backdrop" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center animate__animated animate__fadeIn">
+        <div id="auth-modal-content" class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md m-4" onclick="event.stopPropagation()">
+            <!-- Login Form -->
+            <form id="login-form" class="hidden space-y-4" onsubmit="app.handleLogin(event)">
+                <h2 class="text-2xl font-bold text-center text-slate-800">Connexion</h2>
+                <div id="login-error" class="hidden text-red-600 bg-red-100 p-3 rounded-md text-sm"></div>
+                <div>
+                    <label for="login-email" class="block text-sm font-medium text-slate-700">Email</label>
+                    <input type="email" id="login-email" required class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <div>
+                    <label for="login-password" class="block text-sm font-medium text-slate-700">Mot de passe</label>
+                    <input type="password" id="login-password" required class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-all-300">Se connecter</button>
+                <p class="text-sm text-center text-slate-500">Pas de compte ? <a href="#" onclick="app.showAuthModal('register')" class="font-medium text-indigo-600 hover:underline">Inscrivez-vous</a></p>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register-form" class="hidden space-y-4" onsubmit="app.handleRegister(event)">
+                <h2 class="text-2xl font-bold text-center text-slate-800">Créer un compte</h2>
+                <div id="register-error" class="hidden text-red-600 bg-red-100 p-3 rounded-md text-sm"></div>
+                <div>
+                    <label for="register-email" class="block text-sm font-medium text-slate-700">Email</label>
+                    <input type="email" id="register-email" required class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <div>
+                    <label for="register-password" class="block text-sm font-medium text-slate-700">Mot de passe</label>
+                    <input type="password" id="register-password" required class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-all-300">S'inscrire</button>
+                <p class="text-sm text-center text-slate-500">Déjà un compte ? <a href="#" onclick="app.showAuthModal('login')" class="font-medium text-indigo-600 hover:underline">Connectez-vous</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        const API_BASE_URL = 'http://localhost:8000/api/v1';
+
+        // --- APPLICATION LOGIC (UNCHANGED EXCEPT WHERE NOTED) ---
+        const app = {
+            state: {
+                mode: null, view: 'welcome',
+                sessionId: 'session_' + Date.now() + Math.random().toString(36).substring(2, 9),
+                questionnaire: { config: {}, responses: {}, history: [], queue: [] },
+                recommendationResult: null,
+                // --- AUTH STATE ---
+                authToken: null,
+                isLoggedIn: false
+            },
+            elements: {
+                container: document.getElementById('app-container'),
+                views: {
+                    welcome: document.getElementById('welcome-view'),
+                    freeText: document.getElementById('free-text-view'),
+                    questionnaire: document.getElementById('questionnaire-view'),
+                    loading: document.getElementById('loading-view'),
+                    results: document.getElementById('results-view'),
+                    error: document.getElementById('error-view'),
+                },
+                freeTextInput: document.getElementById('free-text-input'),
+                questionContainer: document.getElementById('question-container'),
+                resultsContent: document.getElementById('results-content'),
+                errorMessage: document.getElementById('error-message'),
+                feedbackRating: document.getElementById('feedback-rating'),
+                feedbackComment: document.getElementById('feedback-comment'),
+                loginBtn: document.getElementById('login-btn'),
+                registerBtn: document.getElementById('register-btn'),
+                logoutBtn: document.getElementById('logout-btn'),
+                authModalBackdrop: document.getElementById('auth-modal-backdrop'),
+                loginForm: document.getElementById('login-form'),
+                registerForm: document.getElementById('register-form'),
+                loginError: document.getElementById('login-error'),
+                registerError: document.getElementById('register-error'),
+            },
+            async init() {
+                // this.render();
+                // Initialize auth UI only if elements exist
+                if (this.elements.loginBtn && this.elements.registerBtn && this.elements.logoutBtn) {
+                    this.updateAuthUI();
+                }
+                
+                await this.fetchQuestionnaireConfig();
+                this.elements.authModalBackdrop.addEventListener('click', () => this.hideAuthModal());
+                this.setView('welcome');},
+            
+            async fetchQuestionnaireConfig() {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/questionnaire/config`);
+                    if (!response.ok) throw new Error('Could not load questionnaire configuration.');
+                    this.state.questionnaire.config = await response.json();
+                } catch (error) {
+                    console.error("Failed to fetch questionnaire config:", error);
+                    const btn = document.querySelector("button[onclick=\"app.setMode('questionnaire')\"]");
+                    if(btn) {
+                        btn.disabled = true;
+                        btn.classList.add('opacity-50', 'cursor-not-allowed', 'hover:!translate-y-0');
+                        btn.querySelector('h3').textContent = "Questionnaire indisponible";
+                    }
+                }
+            },
+            submitFeedback() {
+
+                        // Check if there is a recommendation result to submit feedback for
+                    if (!this.state.recommendationResult) {
+                        console.error("No recommendation data found to submit feedback.");
+                        alert("Une erreur est survenue, impossible de soumettre l'avis.");
+                        return;
+                    }
+
+                    // Protected route: check for auth token
+                    if (!this.state.authToken) {
+                        alert("Veuillez vous connecter pour soumettre un avis.");
+                        this.showAuthModal('login');
+                        return;
+                    }
+
+                    const recommendedPractice = this.state.recommendationResult.recommended_practice;
+                    
+                    // Prepare the data for the backend
+                    const feedbackData = {
+                        session_id: this.state.sessionId,
+                        rating: parseInt(this.elements.feedbackRating.value, 10), // Ensure rating is an integer
+                        comment: this.elements.feedbackComment.value,
+                        practice_name: recommendedPractice.practice_name
+                    };
+
+                fetch(`${API_BASE_URL}/feedback`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(feedbackData)
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Network error');
+                    return response.json();
+                })
+                .then(() => {
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed bottom-4 right-4 bg-emerald-500 text-white px-4 py-3 rounded-lg shadow-lg flex items-center animate__animated animate__fadeInUp';
+                    notification.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg> Merci pour votre feedback !`;
+                    document.body.appendChild(notification);
+                    setTimeout(() => {
+                        notification.classList.replace('animate__fadeInUp', 'animate__fadeOutDown');
+                        setTimeout(() => notification.remove(), 500);
+                    }, 3000);
+                    this.elements.feedbackComment.value = '';
+                })
+                .catch(error => { console.error("Error submitting feedback:", error); });
+            },
+            setMode(mode) {
+                this.state.mode = mode;
+                if (mode === 'questionnaire') {
+                    if (Object.keys(this.state.questionnaire.config).length === 0) {
+                        alert("La configuration du questionnaire n'a pas pu être chargée. Veuillez rafraîchir la page.");
+                        return;
+                    }
+                    this.startQuestionnaire();
+                }
+                this.setView(this.state.mode === 'freeText' ? 'freeText' : 'questionnaire');
+            },
+            setView(viewName) {
+                this.state.view = viewName;
+                this.render();
+            },
+            render() {
+                Object.values(this.elements.views).forEach(view => view.classList.add('hidden'));
+                if (this.elements.views[this.state.view]) {
+                    this.elements.views[this.state.view].classList.remove('hidden');
+                }
+            },
+            reset() {
+                this.state.sessionId = 'session_' + Date.now() + Math.random().toString(36).substring(2, 9);
+                this.state.questionnaire = { ...this.state.questionnaire, responses: {}, history: [], queue: [] };
+                this.elements.freeTextInput.value = '';
+                this.state.mode = null;
+                this.setView('welcome');
+            },
+            async submitFreeText() {
+                const text = this.elements.freeTextInput.value.trim();
+                const minLength = 20, maxLength = 500;
+                if (text.length < minLength || text.length > maxLength) {
+                    alert(`Le texte doit contenir entre ${minLength} et ${maxLength} caractères.`);
+                    return;
+                }
+                await this.getRecommendation('/recommendations/free-text', { session_id: this.state.sessionId, text: text });
+            },
+            startQuestionnaire() {
+                this.state.questionnaire.queue = ['main_concern'];
+                this.renderNextQuestion();
+            },
+            renderNextQuestion() {
+                if (this.state.questionnaire.queue.length === 0) { this.submitQuestionnaire(); return; }
+                const questionId = this.state.questionnaire.queue.shift();
+                if (this.state.questionnaire.history.includes(questionId)) { this.renderNextQuestion(); return; }
+                
+                this.state.questionnaire.history.push(questionId);
+                const question = this.state.questionnaire.config[questionId];
+
+                if (!question) { console.warn(`Question "${questionId}" not found.`); this.submitQuestionnaire(); return; }
+
+                let html = `<h3 class="text-xl font-semibold text-slate-800 mb-5">${question.question}</h3>`;
+                let optionsHtml = '';
+                
+                const renderOption = (opt, type) => `
+                    <div>
+                        <input type="${type}" id="opt-${opt.value}" name="q_option" value="${opt.value}" class="sr-only peer">
+                        <label for="opt-${opt.value}" class="flex items-center justify-between p-4 bg-white rounded-lg border border-slate-300 cursor-pointer transition-all-300 hover:border-indigo-400 peer-checked:border-indigo-600 peer-checked:ring-2 peer-checked:ring-indigo-300 peer-checked:bg-indigo-50">
+                            <span class="text-slate-700 font-medium">${opt.icon ? opt.icon + ' ' : ''}${opt.label}</span>
+                            <div class="w-6 h-6 border-2 border-slate-300 rounded-full flex items-center justify-center transition-all-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-600">
+                                <svg class="w-3 h-3 text-white hidden" viewBox="0 0 24 24"><path fill="currentColor" d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                            </div>
+                        </label>
+                    </div>`;
+
+                switch (question.type) {
+                    case 'multiple_choice':
+                    case 'checkboxes':
+                        optionsHtml = question.options.map(opt => renderOption(opt, 'checkbox')).join('');
+                        break;
+                    case 'single_choice':
+                        optionsHtml = question.options.map(opt => renderOption(opt, 'radio')).join('');
+                        break;
+                    // --- LOGIC CORRECTION ---
+                    case 'scale':
+                        optionsHtml = question.options.map(opt => `
+                            <div>
+                                <input type="radio" id="opt-${opt.value}" name="q_option" value="${opt.value}" class="sr-only peer">
+                                <label for="opt-${opt.value}" style="--tw-shadow-color: ${opt.color || '#4f46e5'}; --tw-ring-color: ${opt.color || '#4f46e5'};" class="block cursor-pointer rounded-lg border border-slate-300 px-4 py-3 text-center font-medium transition-all-300 hover:border-indigo-400 peer-checked:border-transparent peer-checked:ring-2 peer-checked:shadow-lg">
+                                    ${opt.label}
+                                </label>
+                            </div>
+                        `).join('');
+                        html += `<div class="flex flex-wrap justify-center gap-4">${optionsHtml}</div>`;
+                        break;
+                    case 'body_map':
+                        const body_parts = ['head', 'neck', 'shoulders', 'arms', 'hands', 'chest', 'back', 'abdomen', 'hips', 'legs', 'feet', 'joints'];
+                        optionsHtml = body_parts.map(part => renderOption({value: part, label: part.charAt(0).toUpperCase() + part.slice(1)}, 'checkbox')).join('');
+                        html += `<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">${optionsHtml}</div>`;
+                        break;
+                }
+
+                if (['multiple_choice', 'checkboxes', 'single_choice'].includes(question.type)) {
+                    html += `<div class="space-y-3">${optionsHtml}</div>`;
+                }
+
+                html += `<button onclick="app.answerQuestion('${questionId}')" class="mt-6 w-full bg-emerald-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-emerald-700 transition-all-300 hover:-translate-y-0.5">Suivant</button>`;
+                this.elements.questionContainer.innerHTML = html;
+
+                // Make the checkmark visible on checked labels
+                this.elements.questionContainer.querySelectorAll('input[name="q_option"]').forEach(input => {
+                    input.addEventListener('change', () => {
+                        this.elements.questionContainer.querySelectorAll('label').forEach(label => {
+                            const controlledInput = document.getElementById(label.getAttribute('for'));
+                            const checkmark = label.querySelector('svg');
+                            if (checkmark) {
+                                if (controlledInput && controlledInput.checked) {
+                                    checkmark.classList.remove('hidden');
+                                } else {
+                                    checkmark.classList.add('hidden');
+                                }
+                            }
+                        });
+                    });
+                });
+            },
+            answerQuestion(questionId) {
+                const question = this.state.questionnaire.config[questionId];
+                // --- LOGIC CORRECTION: Removed slider from querySelector ---
+                const inputs = this.elements.questionContainer.querySelectorAll('input[name="q_option"]:checked');
+                if (inputs.length === 0) { alert("Veuillez sélectionner une option."); return; }
+                
+                const responses = Array.from(inputs).map(input => input.value);
+                this.state.questionnaire.responses[questionId] = (question.type === 'single_choice' || question.type === 'scale') ? responses[0] : responses;
+
+                let followUps = [];
+                if (question.follow_up) followUps.push(...question.follow_up);
+                if (question.follow_up_conditions) {
+                    responses.forEach(res => { if (question.follow_up_conditions[res]) followUps.push(question.follow_up_conditions[res]); });
+                }
+                if (question.options) {
+                    responses.forEach(resValue => {
+                        const selectedOption = question.options.find(opt => opt.value === resValue);
+                        if (selectedOption && selectedOption.follow_up) followUps.push(...selectedOption.follow_up);
+                    });
+                }
+
+                this.state.questionnaire.queue.unshift(...[...new Set(followUps)]);
+                this.renderNextQuestion();
+            },
+            async submitQuestionnaire() {
+                await this.getRecommendation('/recommendations/questionnaire', { session_id: this.state.sessionId, responses: this.state.questionnaire.responses });
+            },
+            async getRecommendation(endpoint, payload) {
+                this.setView('loading');
+                try {
+                    const response = await fetch(API_BASE_URL + endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+                    if (!response.ok) throw new Error(result.detail || "Une erreur inconnue est survenue.");
+                    this.renderResults(result);
+                    this.setView('results');
+                } catch (error) {
+                    console.error("API Error:", error);
+                    this.elements.errorMessage.textContent = error.message;
+                    this.setView('error');
+                }
+            },
+            parseMarkdown(text) {
+                return text
+                    .replace(/^### (.*$)/gim, '<h4 class="text-lg font-semibold text-slate-800 mt-4 mb-1">$1</h4>')
+                    .replace(/^## (.*$)/gim, '<h3 class="text-xl font-bold text-slate-900 mt-5 mb-2">$1</h3>')
+                    .replace(/^\* (.*$)/gim, '<li class="ml-5 list-disc text-slate-600">$1</li>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-slate-800">$1</strong>')
+                    .replace(/\n/g, '<br>')
+                    .replace(/<br><li/g, '<li').replace(/li><br>/g, 'li>');
+            },
+            renderResults(data) {
+                this.state.recommendationResult = data;
+                const practice = data.recommended_practice;
+                let html = `
+                    <div class="text-center">
+                        <p class="text-indigo-600 font-semibold">Pratique Recommandée</p>
+                        <h2 class="text-4xl font-bold title-font text-slate-900 mt-1">${practice.practice_name}</h2>
+                        <div class="inline-block mt-2 bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Score de pertinence : ${(practice.relevance_score * 100).toFixed(0)}%</div>
+                    </div>
+                    <hr class="my-6">
+                    <div class="prose prose-slate max-w-none prose-p:text-slate-600 prose-headings:text-slate-800">
+                        ${this.parseMarkdown(data.generated_advice)}
+                    </div>`;
+                this.elements.resultsContent.innerHTML = html;
+            },
+            // --- AUTH MODAL LOGIC ---
+
+            async handleRegister(event) {
+                event.preventDefault();
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}/auth/register`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.detail || 'Registration failed');
+                    
+                    // Automatically switch to login view after successful registration
+                    this.showAuthModal('login');
+                } catch (error) {
+                    this.elements.registerError.textContent = error.message;
+                    this.elements.registerError.classList.remove('hidden');
+                }
+            },
+
+            async handleLogin(event) {
+                event.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                const formData = new URLSearchParams();
+                formData.append('username', email);
+                formData.append('password', password);
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.detail || 'Login failed');
+                    
+                    this.state.authToken = data.access_token;
+                    this.updateAuthUI();
+                    this.hideAuthModal();
+                } catch (error) {
+                    this.elements.loginError.textContent = error.message;
+                    this.elements.loginError.classList.remove('hidden');
+                }
+            },
+
+            async logout() {
+                await fetch(`${API_BASE_URL}/auth/logout`, { method: 'POST' });
+                this.state.authToken = null;
+                this.updateAuthUI();
+                // Optionally reset the entire app state
+                this.reset();
+            },
+
+            // --- NEW REFRESH TOKEN METHOD ---
+            async refreshToken() {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
+                        method: 'POST'
+                    });
+                    const data = await response.json();
+                    if (!response.ok) throw new Error('Refresh failed');
+                    this.state.authToken = data.access_token;
+                    console.log("Token refreshed successfully.");
+                    return true;
+                } catch (error) {
+                    console.error("Could not refresh token:", error);
+                    // If refresh fails, log the user out
+                    this.logout();
+                    return false;
+                }
+            },
+            // --- NEW AUTH METHODS ---
+            showAuthModal(mode = 'login') {
+                this.elements.authModalBackdrop.classList.remove('hidden');
+                this.elements.loginForm.classList.toggle('hidden', mode !== 'login');
+                this.elements.registerForm.classList.toggle('hidden', mode !== 'register');
+                this.elements.loginError.classList.add('hidden');
+                this.elements.registerError.classList.add('hidden');
+            },
+            hideAuthModal() {
+                this.elements.authModalBackdrop.classList.add('hidden');
+            },
+            updateAuthUI() {
+                this.state.isLoggedIn = !!this.state.authToken;
+                this.elements.loginBtn.classList.toggle('hidden', this.state.isLoggedIn);
+                this.elements.registerBtn.classList.toggle('hidden', this.state.isLoggedIn);
+                this.elements.logoutBtn.classList.toggle('hidden', !this.state.isLoggedIn);
+            },
+        };
+
+        document.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
+</body>
+</html>

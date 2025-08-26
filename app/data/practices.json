@@ -1,0 +1,1236 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_date": "2024-01-15",
+    "language": "fr-FR",
+    "purpose": "MVP holistic practices database for AI recommendation system",
+    "total_practices": 15
+  },
+  
+  "practices": [
+    {
+      "_id": "osteopathy_001",
+      "practice": {
+        "name": "Ostéopathie",
+        "category": "Pratiques Manuelles",
+        "subcategory": "Thérapie manuelle structurelle",
+        "popularity_rank": 1,
+        "availability": "high",
+        "regulation_status": "regulated"
+      },
+      
+      "description": {
+        "short": "Approche manuelle globale visant à restaurer la mobilité des structures corporelles",
+        "full": "L'ostéopathie est une approche thérapeutique manuelle qui vise à diagnostiquer et traiter les restrictions de mobilité des structures du corps (os, articulations, muscles, fascias, viscères) pour restaurer l'équilibre et la santé globale.",
+        "mechanism": "Restauration de la mobilité tissulaire permettant une meilleure circulation sanguine, lymphatique et nerveuse, favorisant l'auto-guérison du corps",
+        "session_description": "Anamnèse approfondie, tests de mobilité, techniques manuelles douces ou structurelles adaptées, conseils posturaux"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "mal_de_dos",
+            "icd_10": ["M54", "M51"],
+            "effectiveness_score": 0.85,
+            "evidence_level": "high",
+            "typical_sessions": 3
+          },
+          {
+            "condition": "cervicalgie",
+            "icd_10": ["M54.2"],
+            "effectiveness_score": 0.82,
+            "evidence_level": "high",
+            "typical_sessions": 2
+          },
+          {
+            "condition": "maux_de_tete",
+            "icd_10": ["G44", "R51"],
+            "effectiveness_score": 0.75,
+            "evidence_level": "moderate",
+            "typical_sessions": 4
+          }
+        ],
+        "secondary": [
+          "troubles_digestifs_fonctionnels",
+          "troubles_du_sommeil_nourrisson",
+          "stress_tensions",
+          "sequelles_traumatiques"
+        ],
+        "preventive": ["posture", "performance_sportive", "bien_etre_general"]
+      },
+      
+      "contraindications": {
+        "absolute": [
+          "fractures_recentes",
+          "tumeurs_osseuses",
+          "infections_aigues",
+          "syndrome_queue_de_cheval"
+        ],
+        "relative": [
+          "osteoporose_severe",
+          "troubles_coagulation",
+          "grossesse_premier_trimestre"
+        ],
+        "precautions": [
+          "hernie_discale_aigue",
+          "polyarthrite_rhumatoide"
+        ]
+      },
+      
+      "benefits": {
+        "physical": [
+          {"benefit": "soulagement_douleur", "timeframe": "immediate", "duration": "long_term"},
+          {"benefit": "amelioration_mobilite", "timeframe": "immediate", "duration": "long_term"},
+          {"benefit": "equilibre_postural", "timeframe": "short_term", "duration": "long_term"}
+        ],
+        "functional": [
+          {"benefit": "meilleure_digestion", "timeframe": "short_term", "duration": "medium_term"},
+          {"benefit": "sommeil_ameliore", "timeframe": "short_term", "duration": "long_term"}
+        ],
+        "psychological": [
+          {"benefit": "reduction_stress", "timeframe": "immediate", "duration": "short_term"},
+          {"benefit": "bien_etre_general", "timeframe": "short_term", "duration": "medium_term"}
+        ],
+        "evidence_quality": 0.75
+      },
+      
+      "keywords": {
+        "symptoms": [
+          "mal_de_dos", "douleur", "cervicalgie", "lombalgie", "sciatique",
+          "torticolis", "migraine", "vertige", "troubles_digestifs", "stress"
+        ],
+        "desires": [
+          "soulagement", "mobilite", "posture", "equilibre", "bien_etre",
+          "prevention", "performance", "vitalite"
+        ],
+        "concepts": [
+          "therapie_manuelle", "holisme", "structure_fonction", "autoguérison",
+          "mobilite_tissulaire", "fascias", "cranien"
+        ],
+        "techniques": [
+          "manipulation", "mobilisation", "techniques_myotensives", "cranio_sacre",
+          "visceral", "structural", "fonctionnel"
+        ]
+      },
+      
+      "search_vectors": {
+        "symptoms_embedding": [0.234, -0.567, 0.891, -0.123, 0.456],
+        "treatment_embedding": [0.345, -0.678, 0.912, -0.234, 0.567],
+        "combined_embedding": [0.289, -0.622, 0.901, -0.178, 0.511]
+      },
+      
+      "compatibility": {
+        "combines_well_with": [
+          {"practice": "yoga", "synergy_score": 0.85, "reason": "complementarite_posturale"},
+          {"practice": "acupuncture", "synergy_score": 0.80, "reason": "approches_complementaires"},
+          {"practice": "sophrologie", "synergy_score": 0.75, "reason": "gestion_stress_douleur"}
+        ],
+        "avoid_combining": [],
+        "sequential_recommendations": [
+          {"after": "chiropractic", "wait_days": 7},
+          {"after": "massage_deep_tissue", "wait_days": 2}
+        ]
+      },
+      
+      "practical_info": {
+        "session_duration": {
+          "min": 45,
+          "typical": 60,
+          "max": 75,
+          "unit": "minutes"
+        },
+        "frequency": {
+          "acute": "1-2 fois par semaine",
+          "maintenance": "1 fois par mois ou trimestre",
+          "typical_treatment_plan": "3-5 séances"
+        },
+        "cost": {
+          "min": 50,
+          "average": 65,
+          "max": 100,
+          "currency": "EUR",
+          "reimbursement": "certaines mutuelles"
+        },
+        "accessibility": {
+          "physical_requirements": "pouvoir s'allonger",
+          "age_range": {"min": 0, "max": null},
+          "languages": ["français", "anglais"],
+          "wheelchair_accessible": "depends_on_practitioner"
+        },
+        "preparation": {
+          "before_session": ["eviter_repas_copieux", "vetements_confortables"],
+          "after_session": ["hydratation", "repos_si_fatigue"],
+          "contraindicated_activities": ["sport_intense_24h"]
+        }
+      },
+      
+      "practitioner_info": {
+        "required_training": {
+          "duration_years": 5,
+          "certification": "DO",
+          "continuing_education": true
+        },
+        "regulatory_body": "Conseil National de l'Ordre des Ostéopathes",
+        "find_practitioner": {
+          "official_directory": "https://www.osteopathe-syndicat.fr/",
+          "selection_criteria": ["formation_agreee", "experience", "specialisation"]
+        }
+      },
+      
+      "evidence": {
+        "scientific_studies": [
+          {
+            "title": "Osteopathic manipulative treatment for low back pain: systematic review and meta-analysis",
+            "authors": "Franke H. et al.",
+            "year": 2014,
+            "journal": "BMC Musculoskeletal Disorders",
+            "doi": "10.1186/1471-2474-15-286",
+            "quality_score": 0.85,
+            "findings": "Efficacité significative pour les lombalgies chroniques",
+            "sample_size": 1502
+          },
+          {
+            "title": "Osteopathy for primary headache patients: a systematic review",
+            "authors": "Cerritelli F. et al.",
+            "year": 2017,
+            "journal": "Journal of Pain Research",
+            "quality_score": 0.75,
+            "findings": "Réduction significative de la fréquence des céphalées"
+          }
+        ],
+        "meta_analyses": 3,
+        "clinical_guidelines": ["HAS", "NICE"],
+        "evidence_summary": "Preuves solides pour troubles musculo-squelettiques, modérées pour autres indications"
+      },
+      
+      "user_satisfaction": {
+        "average_rating": 4.3,
+        "total_reviews": 2847,
+        "recommendation_rate": 0.82,
+        "common_feedback": {
+          "positive": ["soulagement_rapide", "approche_globale", "ecoute"],
+          "negative": ["cout_eleve", "resultats_variables"],
+          "neutral": ["plusieurs_seances_necessaires"]
+        }
+      },
+      
+      "testimonials": [
+        {
+          "text": "Après des années de mal de dos, l'ostéopathie m'a vraiment soulagée durablement.",
+          "age": 45,
+          "gender": "F",
+          "condition": "lombalgie_chronique",
+          "sessions_before_improvement": 3,
+          "satisfaction": 0.9
+        },
+        {
+          "text": "Mon ostéopathe a résolu mes migraines en travaillant sur mes cervicales.",
+          "age": 38,
+          "gender": "M",
+          "condition": "cephalees_tension",
+          "sessions_before_improvement": 4,
+          "satisfaction": 0.85
+        }
+      ]
+    },
+    
+    {
+      "_id": "acupuncture_002",
+      "practice": {
+        "name": "Acupuncture",
+        "category": "Pratiques Énergétiques",
+        "subcategory": "Médecine Traditionnelle Chinoise",
+        "popularity_rank": 2,
+        "availability": "high",
+        "regulation_status": "regulated"
+      },
+      
+      "description": {
+        "short": "Stimulation de points spécifiques du corps par aiguilles pour rééquilibrer l'énergie",
+        "full": "L'acupuncture est une pratique thérapeutique de la médecine traditionnelle chinoise qui consiste à insérer de fines aiguilles en des points précis du corps pour rétablir la circulation de l'énergie (Qi) le long des méridiens.",
+        "mechanism": "Stimulation de points d'acupuncture provoquant des réactions neurologiques, hormonales et immunitaires favorisant l'homéostasie",
+        "session_description": "Diagnostic énergétique par pouls et langue, insertion d'aiguilles stériles, repos 20-30 minutes, possible moxibustion ou électro-acupuncture"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "douleurs_chroniques",
+            "icd_10": ["M79.3", "M25.5"],
+            "effectiveness_score": 0.88,
+            "evidence_level": "high",
+            "typical_sessions": 6
+          },
+          {
+            "condition": "migraines",
+            "icd_10": ["G43"],
+            "effectiveness_score": 0.80,
+            "evidence_level": "high",
+            "typical_sessions": 8
+          },
+          {
+            "condition": "nausees_chimio",
+            "icd_10": ["R11"],
+            "effectiveness_score": 0.85,
+            "evidence_level": "high",
+            "typical_sessions": 4
+          }
+        ],
+        "secondary": [
+          "stress_anxiete",
+          "troubles_sommeil",
+          "allergies_saisonnieres",
+          "troubles_digestifs",
+          "infertilite",
+          "sevrage_tabagique"
+        ],
+        "preventive": ["equilibre_energetique", "renforcement_immunitaire"]
+      },
+      
+      "contraindications": {
+        "absolute": [
+          "troubles_coagulation_severes",
+          "immunodepression_severe",
+          "zones_infectees"
+        ],
+        "relative": [
+          "grossesse_certains_points",
+          "prise_anticoagulants",
+          "epilepsie"
+        ],
+        "precautions": [
+          "diabete",
+          "pace_maker"
+        ]
+      },
+      
+      "benefits": {
+        "physical": [
+          {"benefit": "analgesie", "timeframe": "immediate", "duration": "medium_term"},
+          {"benefit": "relaxation_musculaire", "timeframe": "immediate", "duration": "short_term"},
+          {"benefit": "amelioration_circulation", "timeframe": "short_term", "duration": "medium_term"}
+        ],
+        "functional": [
+          {"benefit": "meilleur_sommeil", "timeframe": "short_term", "duration": "long_term"},
+          {"benefit": "digestion_regulee", "timeframe": "medium_term", "duration": "long_term"}
+        ],
+        "psychological": [
+          {"benefit": "reduction_anxiete", "timeframe": "immediate", "duration": "medium_term"},
+          {"benefit": "equilibre_emotionnel", "timeframe": "medium_term", "duration": "long_term"}
+        ],
+        "evidence_quality": 0.85
+      },
+      
+      "keywords": {
+        "symptoms": [
+          "douleur", "migraine", "stress", "insomnie", "fatigue",
+          "nausees", "allergie", "anxiete", "depression", "infertilite"
+        ],
+        "desires": [
+          "equilibre", "energie", "soulagement", "relaxation", "vitalite",
+          "prevention", "bien_etre", "harmonie"
+        ],
+        "concepts": [
+          "meridiens", "qi", "yin_yang", "points_acupuncture", "medecine_chinoise",
+          "energie_vitale", "cinq_elements"
+        ],
+        "techniques": [
+          "aiguilles", "moxibustion", "electroacupuncture", "ventouses",
+          "auriculotherapie", "laser_acupuncture"
+        ]
+      },
+      
+      "search_vectors": {
+        "symptoms_embedding": [0.456, -0.789, 0.123, -0.345, 0.678],
+        "treatment_embedding": [0.567, -0.890, 0.234, -0.456, 0.789],
+        "combined_embedding": [0.511, -0.839, 0.178, -0.400, 0.733]
+      },
+      
+      "practical_info": {
+        "session_duration": {
+          "min": 30,
+          "typical": 45,
+          "max": 60,
+          "unit": "minutes"
+        },
+        "frequency": {
+          "acute": "2 fois par semaine",
+          "maintenance": "1 fois par mois",
+          "typical_treatment_plan": "6-10 séances"
+        },
+        "cost": {
+          "min": 50,
+          "average": 70,
+          "max": 90,
+          "currency": "EUR",
+          "reimbursement": "certaines mutuelles"
+        }
+      },
+      
+      "evidence": {
+        "scientific_studies": [
+          {
+            "title": "Acupuncture for Chronic Pain: Update of an Individual Patient Data Meta-Analysis",
+            "authors": "Vickers AJ. et al.",
+            "year": 2018,
+            "journal": "Journal of Pain",
+            "quality_score": 0.90,
+            "findings": "Efficacité supérieure au placebo pour douleurs chroniques",
+            "sample_size": 20827
+          }
+        ],
+        "meta_analyses": 15,
+        "clinical_guidelines": ["WHO", "NICE", "HAS"],
+        "evidence_summary": "Preuves robustes pour douleur, migraines, nausées. Prometteuses pour autres indications"
+      }
+    },
+    
+    {
+      "_id": "sophrologie_003",
+      "practice": {
+        "name": "Sophrologie",
+        "category": "Pratiques Psycho-corporelles",
+        "subcategory": "Relaxation dynamique",
+        "popularity_rank": 3,
+        "availability": "very_high",
+        "regulation_status": "non_regulated"
+      },
+      
+      "description": {
+        "short": "Méthode psycho-corporelle combinant relaxation, respiration et visualisation positive",
+        "full": "La sophrologie est une méthode psycho-corporelle créée par Alfonso Caycedo dans les années 1960. Elle combine des techniques de relaxation, de respiration et de visualisation positive pour développer la conscience de soi et mobiliser ses ressources.",
+        "mechanism": "Activation du système nerveux parasympathique, modification des schémas cognitifs et émotionnels, renforcement des ressources personnelles",
+        "session_description": "Dialogue initial, exercices de relaxation dynamique debout ou assis, techniques respiratoires, visualisations guidées, phénodescription"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "stress_anxiete",
+            "icd_10": ["F41", "F43"],
+            "effectiveness_score": 0.82,
+            "evidence_level": "moderate",
+            "typical_sessions": 8
+          },
+          {
+            "condition": "troubles_sommeil",
+            "icd_10": ["G47"],
+            "effectiveness_score": 0.78,
+            "evidence_level": "moderate",
+            "typical_sessions": 6
+          },
+          {
+            "condition": "preparation_examens",
+            "icd_10": ["Z55"],
+            "effectiveness_score": 0.85,
+            "evidence_level": "moderate",
+            "typical_sessions": 5
+          }
+        ],
+        "secondary": [
+          "gestion_douleur",
+          "preparation_accouchement",
+          "phobies",
+          "burnout",
+          "addictions",
+          "confiance_en_soi"
+        ],
+        "preventive": ["gestion_stress", "developpement_personnel", "performance"]
+      },
+      
+      "keywords": {
+        "symptoms": [
+          "stress", "anxiete", "insomnie", "fatigue", "burnout",
+          "phobie", "douleur", "tension", "nervosité"
+        ],
+        "desires": [
+          "relaxation", "serenite", "confiance", "performance", "equilibre",
+          "concentration", "lacher_prise", "harmonie"
+        ],
+        "concepts": [
+          "conscience", "presence", "visualisation", "respiration", "relaxation_dynamique",
+          "phenomenologie", "vivance"
+        ]
+      },
+      
+      "practical_info": {
+        "session_duration": {
+          "min": 45,
+          "typical": 60,
+          "max": 90,
+          "unit": "minutes"
+        },
+        "frequency": {
+          "acute": "1 fois par semaine",
+          "maintenance": "autonomie visée",
+          "typical_treatment_plan": "8-12 séances"
+        },
+        "cost": {
+          "min": 40,
+          "average": 60,
+          "max": 80,
+          "currency": "EUR",
+          "reimbursement": "rarement"
+        }
+      }
+    },
+    
+    {
+      "_id": "reflexologie_004",
+      "practice": {
+        "name": "Réflexologie",
+        "category": "Pratiques Manuelles",
+        "subcategory": "Thérapie réflexe",
+        "popularity_rank": 4,
+        "availability": "high",
+        "regulation_status": "non_regulated"
+      },
+      
+      "description": {
+        "short": "Stimulation de zones réflexes des pieds, mains ou visage correspondant aux organes",
+        "full": "La réflexologie est une technique manuelle qui consiste à stimuler des zones réflexes situées sur les pieds, les mains ou le visage, correspondant aux différents organes et systèmes du corps pour favoriser l'équilibre et l'auto-guérison.",
+        "mechanism": "Stimulation nerveuse réflexe, amélioration de la circulation, libération d'endorphines, activation du système nerveux parasympathique",
+        "session_description": "Anamnèse, observation et palpation des zones réflexes, pressions spécifiques adaptées, travail global puis ciblé, conseils personnalisés"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "stress_tensions",
+            "effectiveness_score": 0.85,
+            "evidence_level": "moderate",
+            "typical_sessions": 5
+          },
+          {
+            "condition": "troubles_digestifs_fonctionnels",
+            "effectiveness_score": 0.75,
+            "evidence_level": "low",
+            "typical_sessions": 6
+          },
+          {
+            "condition": "troubles_circulation",
+            "effectiveness_score": 0.70,
+            "evidence_level": "low",
+            "typical_sessions": 8
+          }
+        ],
+        "secondary": [
+          "maux_de_tete",
+          "troubles_sommeil",
+          "tensions_musculaires",
+          "troubles_hormonaux",
+          "fatigue_chronique"
+        ]
+      },
+      
+      "practical_info": {
+        "session_duration": {
+          "min": 45,
+          "typical": 60,
+          "max": 75,
+          "unit": "minutes"
+        },
+        "cost": {
+          "min": 40,
+          "average": 55,
+          "max": 70,
+          "currency": "EUR"
+        }
+      }
+    },
+    
+    {
+      "_id": "yoga_005",
+      "practice": {
+        "name": "Yoga",
+        "category": "Pratiques Psycho-corporelles",
+        "subcategory": "Pratique corps-esprit",
+        "popularity_rank": 5,
+        "availability": "very_high",
+        "regulation_status": "non_regulated"
+      },
+      
+      "description": {
+        "short": "Pratique millénaire unissant postures, respiration et méditation",
+        "full": "Le yoga est une pratique millénaire originaire d'Inde qui unit le corps, le mental et l'esprit à travers des postures (asanas), des techniques respiratoires (pranayama) et la méditation. Il existe de nombreux styles adaptés à différents besoins.",
+        "mechanism": "Amélioration de la flexibilité et force musculaire, régulation du système nerveux autonome, réduction du cortisol, augmentation GABA",
+        "session_description": "Centrage initial, échauffement, séquence de postures adaptées, techniques respiratoires, relaxation finale (savasana)"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "mal_de_dos",
+            "effectiveness_score": 0.82,
+            "evidence_level": "high",
+            "typical_sessions": 12
+          },
+          {
+            "condition": "stress_anxiete",
+            "effectiveness_score": 0.85,
+            "evidence_level": "high",
+            "typical_sessions": 8
+          },
+          {
+            "condition": "depression_legere",
+            "effectiveness_score": 0.75,
+            "evidence_level": "moderate",
+            "typical_sessions": 16
+          }
+        ]
+      },
+      
+      "practical_info": {
+        "session_duration": {
+          "min": 60,
+          "typical": 75,
+          "max": 90,
+          "unit": "minutes"
+        },
+        "cost": {
+          "min": 15,
+          "average": 20,
+          "max": 80,
+          "currency": "EUR",
+          "note": "cours collectif vs individuel"
+        }
+      }
+    },
+    
+    {
+      "_id": "naturopathie_006",
+      "practice": {
+        "name": "Naturopathie",
+        "category": "Pratiques Naturelles",
+        "subcategory": "Médecine préventive naturelle",
+        "popularity_rank": 6,
+        "availability": "high",
+        "regulation_status": "non_regulated"
+      },
+      
+      "description": {
+        "short": "Approche holistique utilisant des moyens naturels pour maintenir la santé",
+        "full": "La naturopathie est une approche holistique de la santé qui vise à maintenir ou restaurer l'équilibre naturel du corps en utilisant des moyens naturels : alimentation, phytothérapie, hygiène de vie, techniques manuelles et énergétiques.",
+        "mechanism": "Stimulation des capacités d'auto-guérison, élimination des toxines, correction des déséquilibres, renforcement du terrain",
+        "session_description": "Bilan de vitalité approfondi (1h30-2h), analyse du terrain, programme d'hygiène vitale personnalisé, conseils alimentaires et compléments"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "fatigue_chronique",
+            "effectiveness_score": 0.75,
+            "evidence_level": "low",
+            "typical_sessions": 3
+          },
+          {
+            "condition": "troubles_digestifs",
+            "effectiveness_score": 0.78,
+            "evidence_level": "moderate",
+            "typical_sessions": 4
+          }
+        ]
+      }
+    },
+    
+    {
+      "_id": "hypnose_007",
+      "practice": {
+        "name": "Hypnose",
+        "category": "Pratiques Psycho-corporelles",
+        "subcategory": "Thérapie par états modifiés de conscience",
+        "popularity_rank": 7,
+        "availability": "high",
+        "regulation_status": "partial"
+      },
+      
+      "description": {
+        "short": "État modifié de conscience pour accéder aux ressources inconscientes",
+        "full": "L'hypnose est un état modifié de conscience caractérisé par une attention focalisée et une suggestibilité accrue. L'hypnothérapie utilise cet état pour faciliter des changements thérapeutiques au niveau inconscient.",
+        "mechanism": "Modification de l'activité cérébrale, accès aux processus inconscients, neuroplasticité accrue, modification des schémas cognitifs et comportementaux",
+        "session_description": "Entretien préalable, induction hypnotique progressive, travail thérapeutique avec suggestions et métaphores, réassociation, débriefing"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "arret_tabac",
+            "effectiveness_score": 0.70,
+            "evidence_level": "moderate",
+            "typical_sessions": 3
+          },
+          {
+            "condition": "phobies",
+            "effectiveness_score": 0.80,
+            "evidence_level": "high",
+            "typical_sessions": 5
+          },
+          {
+            "condition": "douleurs_chroniques",
+            "effectiveness_score": 0.75,
+            "evidence_level": "high",
+            "typical_sessions": 6
+          }
+        ]
+      }
+    },
+    
+    {
+      "_id": "shiatsu_008",
+      "practice": {
+        "name": "Shiatsu",
+        "category": "Pratiques Manuelles",
+        "subcategory": "Massage énergétique japonais",
+        "popularity_rank": 8,
+        "availability": "medium",
+        "regulation_status": "non_regulated"
+      },
+      
+      "description": {
+        "short": "Pressions digitales sur les méridiens pour rééquilibrer l'énergie vitale",
+        "full": "Le Shiatsu est une technique de massage japonaise qui utilise des pressions digitales le long des méridiens d'acupuncture pour rééquilibrer l'énergie vitale et favoriser l'auto-guérison du corps.",
+        "mechanism": "Stimulation des points d'acupression, régulation du système nerveux autonome, amélioration de la circulation sanguine et lymphatique",
+        "session_description": "Bilan énergétique, travail sur futon habillé, pressions rythmées avec pouces et paumes, étirements doux, harmonisation globale"
+      }
+    },
+    
+    {
+      "_id": "meditation_009",
+      "practice": {
+        "name": "Méditation",
+        "category": "Pratiques Psycho-corporelles",
+        "subcategory": "Entraînement de l'attention",
+        "popularity_rank": 9,
+        "availability": "very_high",
+        "regulation_status": "non_regulated"
+      },
+      
+      "description": {
+        "short": "Pratique d'attention consciente pour cultiver la présence et le calme mental",
+        "full": "La méditation est une pratique mentale qui consiste à porter son attention de manière consciente sur un objet, une pensée, une sensation ou la respiration. Elle existe sous diverses formes : pleine conscience, transcendantale, vipassana, zen, etc.",
+        "mechanism": "Modifications neuroplastiques, réduction de l'activité de l'amygdale, augmentation de la matière grise, régulation émotionnelle améliorée",
+        "session_description": "Installation confortable, guidage de l'attention, observation sans jugement, retour à l'ancrage lors des distractions, intégration"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "stress_anxiete",
+            "effectiveness_score": 0.88,
+            "evidence_level": "high",
+            "typical_sessions": "pratique régulière"
+          },
+          {
+            "condition": "depression_rechute",
+            "effectiveness_score": 0.80,
+            "evidence_level": "high",
+            "typical_sessions": "8 semaines MBSR"
+          }
+        ]
+      }
+    },
+    
+    {
+      "_id": "aromatherapie_010",
+      "practice": {
+        "name": "Aromathérapie",
+        "category": "Pratiques Naturelles",
+        "subcategory": "Thérapie par huiles essentielles",
+        "popularity_rank": 10,
+        "availability": "very_high",
+        "regulation_status": "partial"
+      },
+      
+      "description": {
+        "short": "Utilisation thérapeutique des huiles essentielles pour la santé et le bien-être",
+        "full": "L'aromathérapie est l'utilisation thérapeutique des huiles essentielles extraites de plantes aromatiques. Elle agit sur les plans physique, émotionnel et énergétique par voie cutanée, respiratoire ou orale (sous supervision).",
+        "mechanism": "Action biochimique des molécules aromatiques, stimulation du système limbique via l'olfaction, propriétés antimicrobiennes et anti-inflammatoires",
+        "session_description": "Consultation pour identifier les besoins, sélection des huiles essentielles appropriées, création de synergies personnalisées, conseils d'utilisation"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "stress_anxiete",
+            "effectiveness_score": 0.75,
+            "evidence_level": "moderate",
+            "typical_sessions": "usage autonome"
+          },
+          {
+            "condition": "troubles_sommeil",
+            "effectiveness_score": 0.78,
+            "evidence_level": "moderate",
+            "typical_sessions": "usage quotidien"
+          },
+          {
+            "condition": "infections_respiratoires",
+            "effectiveness_score": 0.70,
+            "evidence_level": "moderate",
+            "typical_sessions": "selon besoin"
+          }
+        ],
+        "secondary": [
+          "problemes_peau",
+          "douleurs_musculaires",
+          "troubles_digestifs",
+          "fatigue",
+          "concentration"
+        ]
+      },
+      
+      "contraindications": {
+        "absolute": [
+          "allergie_composants",
+          "epilepsie_certaines_HE",
+          "grossesse_premier_trimestre"
+        ],
+        "relative": [
+          "enfants_moins_6ans",
+          "allaitement",
+          "asthme"
+        ],
+        "precautions": [
+          "exposition_solaire_HE_photosensibilisantes",
+          "interactions_medicamenteuses"
+        ]
+      },
+      
+      "practical_info": {
+        "session_duration": {
+          "consultation": 60,
+          "atelier": 120,
+          "unit": "minutes"
+        },
+        "cost": {
+          "consultation": 60,
+          "huiles_essentielles": "5-50 EUR/flacon",
+          "currency": "EUR"
+        }
+      }
+    },
+    
+    {
+      "_id": "massage_011",
+      "practice": {
+        "name": "Massage Bien-être",
+        "category": "Pratiques Manuelles",
+        "subcategory": "Massage relaxant",
+        "popularity_rank": 11,
+        "availability": "very_high",
+        "regulation_status": "non_regulated"
+      },
+      
+      "description": {
+        "short": "Techniques manuelles pour la détente et le relâchement des tensions",
+        "full": "Le massage bien-être englobe diverses techniques manuelles (californien, suédois, ayurvédique, etc.) visant la détente, le relâchement des tensions et l'amélioration du bien-être général par des mouvements fluides et enveloppants.",
+        "mechanism": "Activation du système parasympathique, libération d'endorphines, amélioration de la circulation, diminution du cortisol",
+        "session_description": "Accueil personnalisé, installation confortable, massage adapté aux besoins avec huiles, ambiance propice à la détente, temps de repos"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "stress_tensions",
+            "effectiveness_score": 0.85,
+            "evidence_level": "high",
+            "typical_sessions": "selon besoin"
+          },
+          {
+            "condition": "tensions_musculaires",
+            "effectiveness_score": 0.80,
+            "evidence_level": "high",
+            "typical_sessions": "régulier"
+          }
+        ]
+      },
+      
+      "practical_info": {
+        "session_duration": {
+          "min": 30,
+          "typical": 60,
+          "max": 90,
+          "unit": "minutes"
+        },
+        "cost": {
+          "min": 50,
+          "average": 70,
+          "max": 120,
+          "currency": "EUR"
+        }
+      }
+    },
+    
+    {
+      "_id": "reiki_012",
+      "practice": {
+        "name": "Reiki",
+        "category": "Pratiques Énergétiques",
+        "subcategory": "Soin énergétique japonais",
+        "popularity_rank": 12,
+        "availability": "high",
+        "regulation_status": "non_regulated"
+      },
+      
+      "description": {
+        "short": "Transmission d'énergie universelle par imposition des mains",
+        "full": "Le Reiki est une pratique énergétique japonaise développée par Mikao Usui au début du 20e siècle. Elle consiste en l'imposition des mains pour canaliser l'énergie universelle vers le receveur afin de favoriser l'équilibre énergétique, la relaxation et l'auto-guérison.",
+        "mechanism": "Activation de la réponse de relaxation, équilibrage énergétique, stimulation des capacités d'auto-guérison, harmonisation des chakras",
+        "session_description": "Installation confortable habillé, imposition des mains sur ou au-dessus du corps, positions spécifiques tête-tronc-membres, intégration finale"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "stress_anxiete",
+            "effectiveness_score": 0.70,
+            "evidence_level": "low",
+            "typical_sessions": 4
+          },
+          {
+            "condition": "fatigue_epuisement",
+            "effectiveness_score": 0.68,
+            "evidence_level": "low",
+            "typical_sessions": 6
+          }
+        ],
+        "secondary": [
+          "douleurs_chroniques",
+          "troubles_sommeil",
+          "soutien_emotionnel",
+          "accompagnement_soins"
+        ]
+      },
+      
+      "practical_info": {
+        "session_duration": {
+          "min": 45,
+          "typical": 60,
+          "max": 90,
+          "unit": "minutes"
+        },
+        "cost": {
+          "min": 40,
+          "average": 60,
+          "max": 80,
+          "currency": "EUR"
+        }
+      }
+    },
+    
+    {
+      "_id": "chiropractie_013",
+      "practice": {
+        "name": "Chiropractie",
+        "category": "Pratiques Manuelles",
+        "subcategory": "Thérapie manuelle vertébrale",
+        "popularity_rank": 13,
+        "availability": "medium",
+        "regulation_status": "regulated"
+      },
+      
+      "description": {
+        "short": "Ajustements vertébraux pour optimiser le fonctionnement du système nerveux",
+        "full": "La chiropractie est une profession de santé manuelle qui se concentre sur le diagnostic, le traitement et la prévention des troubles neuro-musculo-squelettiques, particulièrement ceux de la colonne vertébrale.",
+        "mechanism": "Restauration de la mobilité articulaire, diminution de l'irritation nerveuse, amélioration de la proprioception, modulation de la douleur",
+        "session_description": "Examen clinique approfondi, tests orthopédiques et neurologiques, ajustements vertébraux spécifiques, conseils posturaux et exercices"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "lombalgie",
+            "effectiveness_score": 0.82,
+            "evidence_level": "high",
+            "typical_sessions": 6
+          },
+          {
+            "condition": "cervicalgie",
+            "effectiveness_score": 0.80,
+            "evidence_level": "high",
+            "typical_sessions": 4
+          }
+        ]
+      },
+      
+      "contraindications": {
+        "absolute": [
+          "fractures_vertebrales",
+          "tumeurs_spinales",
+          "infections_osseuses",
+          "syndrome_queue_cheval"
+        ]
+      },
+      
+      "practical_info": {
+        "session_duration": {
+          "initial": 60,
+          "followup": 30,
+          "unit": "minutes"
+        },
+        "cost": {
+          "min": 40,
+          "average": 55,
+          "max": 80,
+          "currency": "EUR"
+        }
+      }
+    },
+    
+    {
+      "_id": "eft_014",
+      "practice": {
+        "name": "EFT",
+        "category": "Pratiques Psycho-corporelles",
+        "subcategory": "Psychologie énergétique",
+        "popularity_rank": 14,
+        "availability": "medium",
+        "regulation_status": "non_regulated"
+      },
+      
+      "description": {
+        "short": "Libération émotionnelle par tapotements sur points d'acupuncture",
+        "full": "L'EFT (Emotional Freedom Technique) est une technique de libération émotionnelle qui combine la stimulation de points d'acupuncture par tapotements avec la verbalisation de problèmes émotionnels. Elle est souvent appelée 'acupuncture émotionnelle sans aiguilles'.",
+        "mechanism": "Désensibilisation émotionnelle, régulation du système nerveux, reconsolidation de la mémoire, diminution de l'hyperactivité amygdalienne",
+        "session_description": "Identification du problème et évaluation de l'intensité, phrase de setup, rondes de tapotements sur points spécifiques avec phrases de rappel, réévaluation"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "phobies",
+            "effectiveness_score": 0.75,
+            "evidence_level": "moderate",
+            "typical_sessions": 3
+          },
+          {
+            "condition": "stress_traumatique",
+            "effectiveness_score": 0.78,
+            "evidence_level": "moderate",
+            "typical_sessions": 6
+          },
+          {
+            "condition": "anxiete",
+            "effectiveness_score": 0.72,
+            "evidence_level": "moderate",
+            "typical_sessions": 5
+          }
+        ]
+      },
+      
+      "keywords": {
+        "symptoms": [
+          "phobie", "traumatisme", "anxiete", "stress", "blocage_emotionnel",
+          "douleur_emotionnelle", "addiction", "peur"
+        ],
+        "desires": [
+          "liberation", "apaisement", "confiance", "serenite", "guerison_emotionnelle"
+        ],
+        "concepts": [
+          "tapotements", "meridiens", "psychologie_energetique", "acupression"
+        ]
+      },
+      
+      "practical_info": {
+        "session_duration": {
+          "min": 30,
+          "typical": 60,
+          "max": 90,
+          "unit": "minutes"
+        },
+        "cost": {
+          "min": 50,
+          "average": 70,
+          "max": 90,
+          "currency": "EUR"
+        },
+        "self_practice": {
+          "possible": true,
+          "training_required": "basic",
+          "resources": "videos, books, apps"
+        }
+      }
+    },
+    
+    {
+      "_id": "phytotherapie_015",
+      "practice": {
+        "name": "Phytothérapie",
+        "category": "Pratiques Naturelles",
+        "subcategory": "Médecine par les plantes",
+        "popularity_rank": 15,
+        "availability": "very_high",
+        "regulation_status": "partial"
+      },
+      
+      "description": {
+        "short": "Utilisation thérapeutique des plantes médicinales sous diverses formes",
+        "full": "La phytothérapie est l'art de soigner par les plantes médicinales. Elle utilise les principes actifs des végétaux sous diverses formes (tisanes, extraits, teintures, gélules) pour prévenir et traiter diverses affections.",
+        "mechanism": "Action synergique des principes actifs végétaux, modulation des processus physiologiques, soutien des fonctions organiques",
+        "session_description": "Consultation pour bilan de santé, identification des plantes adaptées, conseils de préparation et posologie, suivi de l'évolution"
+      },
+      
+      "indications": {
+        "primary": [
+          {
+            "condition": "troubles_digestifs",
+            "effectiveness_score": 0.75,
+            "evidence_level": "moderate",
+            "typical_sessions": "traitement continu"
+          },
+          {
+            "condition": "troubles_sommeil",
+            "effectiveness_score": 0.72,
+            "evidence_level": "moderate",
+            "typical_sessions": "3-4 semaines"
+          },
+          {
+            "condition": "stress_anxiete_legere",
+            "effectiveness_score": 0.70,
+            "evidence_level": "moderate",
+            "typical_sessions": "usage régulier"
+          }
+        ],
+        "secondary": [
+          "troubles_circulatoires",
+          "infections_benignes",
+          "troubles_hormonaux",
+          "fatigue",
+          "immunite"
+        ]
+      },
+      
+      "contraindications": {
+        "relative": [
+          "grossesse_allaitement",
+          "interactions_medicamenteuses",
+          "allergies_plantes"
+        ],
+        "precautions": [
+          "dosage_approprie",
+          "qualite_plantes",
+          "duree_traitement"
+        ]
+      },
+      
+      "practical_info": {
+        "session_duration": {
+          "consultation": 60,
+          "unit": "minutes"
+        },
+        "cost": {
+          "consultation": 60,
+          "plantes": "5-30 EUR/mois",
+          "currency": "EUR"
+        }
+      }
+    }
+  ],
+  
+  "matching_rules": {
+    "symptom_practice_matrix": {
+      "stress_anxiete": {
+        "primary": ["sophrologie", "meditation", "yoga", "hypnose"],
+        "secondary": ["acupuncture", "reiki", "aromatherapie", "massage"],
+        "complementary": ["phytotherapie", "reflexologie"]
+      },
+      "douleurs_chroniques": {
+        "primary": ["osteopathie", "acupuncture", "chiropractie"],
+        "secondary": ["hypnose", "sophrologie", "massage"],
+        "complementary": ["yoga", "shiatsu", "reflexologie"]
+      },
+      "troubles_sommeil": {
+        "primary": ["sophrologie", "hypnose", "aromatherapie"],
+        "secondary": ["acupuncture", "reflexologie", "phytotherapie"],
+        "complementary": ["meditation", "yoga", "reiki"]
+      },
+      "fatigue_chronique": {
+        "primary": ["naturopathie", "acupuncture", "shiatsu"],
+        "secondary": ["reflexologie", "reiki", "yoga"],
+        "complementary": ["aromatherapie", "phytotherapie", "meditation"]
+      },
+      "troubles_digestifs": {
+        "primary": ["naturopathie", "osteopathie", "phytotherapie"],
+        "secondary": ["acupuncture", "reflexologie", "hypnose"],
+        "complementary": ["sophrologie", "aromatherapie", "shiatsu"]
+      }
+    },
+    
+    "personality_practice_affinity": {
+      "analytical_scientific": {
+        "high_affinity": ["osteopathie", "acupuncture", "chiropractie", "hypnose"],
+        "medium_affinity": ["naturopathie", "sophrologie", "phytotherapie"],
+        "low_affinity": ["reiki", "aromatherapie"]
+      },
+      "intuitive_spiritual": {
+        "high_affinity": ["reiki", "meditation", "yoga", "aromatherapie"],
+        "medium_affinity": ["shiatsu", "reflexologie", "sophrologie"],
+        "low_affinity": ["chiropractie"]
+      },
+      "pragmatic_results_oriented": {
+        "high_affinity": ["osteopathie", "chiropractie", "hypnose", "eft"],
+        "medium_affinity": ["acupuncture", "massage", "naturopathie"],
+        "low_affinity": ["meditation", "reiki"]
+      },
+      "holistic_preventive": {
+        "high_affinity": ["naturopathie", "yoga", "meditation", "acupuncture"],
+        "medium_affinity": ["aromatherapie", "phytotherapie", "sophrologie"],
+        "low_affinity": ["chiropractie"]
+      }
+    },
+    
+    "contraindication_checker": {
+      "pregnancy": {
+        "avoid": ["certains_points_acupuncture", "certaines_huiles_essentielles", "certaines_plantes"],
+        "adapt": ["osteopathie", "yoga", "massage", "sophrologie"],
+        "safe": ["meditation", "hypnose", "reiki"]
+      },
+      "blood_disorders": {
+        "avoid": ["acupuncture_si_severe"],
+        "caution": ["massage_profond", "chiropractie"],
+        "safe": ["sophrologie", "meditation", "hypnose", "reiki"]
+      },
+      "psychiatric_severe": {
+        "avoid": ["meditation_intensive", "hypnose_sans_suivi"],
+        "supervised_only": ["sophrologie", "yoga", "eft"],
+        "complement_only": ["aromatherapie", "massage", "reflexologie"]
+      }
+    }
+  },
+  
+  "recommendation_templates": {
+    "primary_recommendation": {
+      "template": "Basé sur votre profil et vos besoins principaux de {main_symptoms}, je vous recommande {practice_name}. Cette pratique est particulièrement efficace pour {key_benefits} avec un taux de satisfaction de {satisfaction_rate}%.",
+      "include_evidence": true,
+      "include_testimonial": true
+    },
+    
+    "complementary_suggestions": {
+      "template": "Pour optimiser les résultats, {practice_name} se combine très bien avec {complementary_practices}. Cette synergie permet de {synergy_benefits}.",
+      "max_suggestions": 2
+    },
+    
+    "practical_next_steps": {
+      "template": "Voici comment commencer : 1) {first_step}, 2) {second_step}, 3) {third_step}. Un programme typique comprend {typical_sessions} séances sur {duration}.",
+      "include_cost_estimate": true,
+      "include_practitioner_search": true
+    }
+  },
+  
+  "analytics_tracking": {
+    "user_journey": {
+      "track_points": [
+        "initial_questionnaire",
+        "recommendation_viewed",
+        "practitioner_contacted",
+        "session_booked",
+        "feedback_provided"
+      ]
+    },
+    
+    "success_metrics": {
+      "engagement": ["click_through_rate", "time_on_recommendation", "actions_taken"],
+      "satisfaction": ["post_session_rating", "would_recommend", "continued_practice"],
+      "health_outcomes": ["symptom_improvement", "quality_of_life_change", "goal_achievement"]
+    }
+  }
+}

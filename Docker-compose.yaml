@@ -1,0 +1,105 @@
+# docker-compose.yml
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+      - redis
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    networks: # notre réseau personnalisé
+      - holilib-net
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_DB_NAME}
+    networks: # ← Ajouté
+      - holilib-net
+
+  mongo-express:
+    image: mongo-express:latest
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+    depends_on:
+      - mongo
+    networks: # ← Ajouté
+      - holilib-net
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks: # ← Ajouté
+      - holilib-net
+
+  db-seed:
+    build: .
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+    command: python scripts/seed_db.py
+    restart: "no"
+    networks: # ← Ajouté
+      - holilib-net
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    restart: always
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    command: --config.file=/etc/prometheus/prometheus.yml
+    networks: # ← Ajouté
+      - holilib-net
+    # depends_on:  # Optionnel, mais tu peux le décommenter
+    #   - app
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    depends_on:
+      - prometheus
+    networks: # ← Ajouté
+      - holilib-net
+
+# --- Volumes ---
+volumes:
+  mongo_data:
+  redis_data:
+  grafana_data:
+  prometheus_data:
+
+# --- Réseau personnalisé ---
+networks:
+  holilib-net:
+    driver: bridge

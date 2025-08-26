@@ -1,0 +1,885 @@
+questions:
+  main_concern:
+    id: main_concern
+    type: multiple_choice
+    question: Quelles sont vos préoccupations principales actuellement ?
+    options:
+      - value: physical_pain
+        label: Douleurs physiques
+        icon: 🤕
+        follow_up:
+          - pain_location
+          - pain_intensity
+          - pain_duration
+      - value: stress_anxiety
+        label: Stress et anxiété
+        icon: 😰
+        follow_up:
+          - stress_level
+          - stress_triggers
+          - stress_symptoms
+      - value: sleep_issues
+        label: Troubles du sommeil
+        icon: 😴
+        follow_up:
+          - sleep_pattern
+          - sleep_quality
+          - sleep_impact
+      - value: fatigue
+        label: Fatigue et manque d'énergie
+        icon: 😫
+        follow_up:
+          - fatigue_type
+          - fatigue_duration
+          - energy_pattern
+      - value: emotional
+        label: Difficultés émotionnelles
+        icon: 😢
+        follow_up:
+          - emotion_type
+          - emotion_triggers
+          - emotional_support
+      - value: digestive
+        label: Troubles digestifs
+        icon: 🤢
+        follow_up:
+          - digestive_symptoms
+          - food_triggers
+          - digestive_frequency
+    ai_analysis:
+      extract_keywords: true
+      priority_scoring: true
+
+  # Main Pain Location Question
+  pain_location:
+    id: pain_location
+    type: body_map
+    question: Où ressentez-vous des douleurs ?
+    validation:
+      min_selections: 1
+    follow_up_conditions:
+      back: back_pain_location
+      head: headache_location
+      joints: joint_pain_location
+      abdomen: abdominal_pain_location
+    follow_up:
+      - pain_frequency
+      - pain_intensity
+
+# Pain Frequency Follow-up
+  pain_frequency:
+    id: pain_frequency
+    type: single_choice
+    question: À quelle fréquence ressentez-vous cette douleur ?
+    options:
+      - value: daily
+        label: Quotidienne
+      - value: weekly
+        label: Hebdomadaire
+      - value: occasional
+        label: Occasionnelle
+      - value: constant
+        label: Constante
+    follow_up:
+      - pain_duration
+      - pain_triggers
+
+# Pain Intensity Follow-up
+  pain_intensity:
+    id: pain_intensity
+    type: single_choice
+    question: Quelle est l’intensité de cette douleur ?
+    options:
+      - value: low
+        label: Légère
+      - value: moderate
+        label: Modérée
+      - value: high
+        label: Forte
+      - value: unbearable
+        label: Insupportable
+    follow_up:
+      - pain_effect_on_activity
+      - pain_management_methods
+
+# Pain Duration Follow-up
+  pain_duration:
+    id: pain_duration
+    type: single_choice
+    question: Depuis combien de temps ressentez-vous cette douleur ?
+    options:
+      - value: less_than_a_week
+        label: Moins d’une semaine
+      - value: one_to_two_weeks
+        label: 1 à 2 semaines
+      - value: one_month
+        label: Un mois
+      - value: more_than_month
+        label: Plus d’un mois
+    follow_up:
+      - pain_location_details
+      - pain_experience
+
+# Pain Triggers Follow-up
+  pain_triggers:
+    id: pain_triggers
+    type: checkboxes
+    question: Quels facteurs déclenchent cette douleur ?
+    options:
+      - value: stress
+        label: Stress
+      - value: activity
+        label: Activité physique
+      - value: posture
+        label: Mauvaise posture
+      - value: weather
+        label: Conditions météorologiques
+      - value: sleep
+        label: Manque de sommeil
+    follow_up:
+      - pain_management_methods
+      - medical_interventions
+
+# Pain Effect on Activity Follow-up
+  pain_effect_on_activity:
+    id: pain_effect_on_activity
+    type: single_choice
+    question: Cette douleur a-t-elle un impact sur vos activités quotidiennes ?
+    options:
+      - value: none
+        label: Aucun impact
+      - value: mild
+        label: Impact léger
+      - value: moderate
+        label: Impact modéré
+      - value: severe
+        label: Impact sévère
+    follow_up:
+      - holistic_experience
+
+##################### Pain Management Methods Follow-up ## j'ai enlevé ces 3 prochaines questions, dispo si besoin
+  pain_management_methods:
+    id: pain_management_methods
+    type: checkboxes
+    question: Quelles méthodes utilisez-vous pour gérer cette douleur ?
+    options:
+      - value: medication
+        label: Médicaments
+      - value: physical_therapy
+        label: Thérapie physique
+      - value: relaxation_techniques
+        label: Techniques de relaxation
+      - value: acupuncture
+        label: Acupuncture
+      - value: massage
+        label: Massage
+    follow_up:
+      - treatment_experience
+
+# Treatment Effectiveness Follow-up
+  treatment_effectiveness:
+    id: treatment_effectiveness
+    type: single_choice
+    question: Quelle est l’efficacité de votre traitement contre la douleur ?
+    options:
+      - value: not_effective
+        label: Pas du tout efficace
+      - value: slightly_effective
+        label: Légèrement efficace
+      - value: moderately_effective
+        label: Moyennement efficace
+      - value: very_effective
+        label: Très efficace
+    follow_up:
+      - treatment_changes
+
+# Treatment Changes Follow-up
+  treatment_changes:
+    id: treatment_changes
+    type: single_choice
+    question: Avez-vous envisagé de changer votre traitement ?
+    options:
+      - value: yes
+        label: Oui
+      - value: no
+        label: Non
+    follow_up:
+      - treatment_options
+
+# Treatment Options Follow-up
+  treatment_options:
+    id: treatment_options
+    type: checkboxes
+    question: Quelles options de traitement envisagez-vous ?
+    options:
+      - value: surgery
+        label: Chirurgie
+      - value: medication_change
+        label: Changer de médicaments
+      - value: lifestyle_changes
+        label: Changement de mode de vie
+      - value: therapy_change
+        label: Changer de thérapie
+    follow_up:
+      - treatment_preference
+
+# Treatment Preference Follow-up
+  treatment_preference:
+    id: treatment_preference
+    type: single_choice
+    question: Quelle option de traitement préférez-vous ?
+    options:
+      - value: most_convenient
+        label: La plus pratique
+      - value: most_effective
+        label: La plus efficace
+      - value: most_comfortable
+        label: La plus confortable
+
+#######################################################################################
+
+
+  headache_triggers:
+    id: headache_triggers
+    type: checkboxes
+    question: Quels facteurs déclenchent vos maux de tête ?
+    options:
+      - value: stress
+        label: Stress
+      - value: dehydration
+        label: Déshydratation
+      - value: lack_of_sleep
+        label: Manque de sommeil
+      - value: bright_lights
+        label: Lumière vive
+      - value: hormonal_changes
+        label: Changements hormonaux
+
+  joint_pain_specific:
+    id: joint_pain_specific
+    type: checkboxes
+    question: Quels articulations vous font souffrir ?
+    options:
+      - value: knees
+        label: Genoux
+      - value: shoulders
+        label: Épaules
+      - value: hips
+        label: Hanches
+      - value: hands
+        label: Mains
+    follow_up:
+      - joint_pain_duration
+
+  joint_pain_duration:
+    id: joint_pain_duration
+    type: single_choice
+    question: Depuis combien de temps souffrez-vous de douleurs articulaires ?
+    options:
+      - value: less_than_week
+        label: Moins d'une semaine
+      - value: weeks_to_months
+        label: Quelques semaines à quelques mois
+      - value: more_than_year
+        label: Plus d’un an
+    follow_up:
+      - holistic_experience
+
+  stress_level:
+    id: stress_level
+    type: scale
+    question: Comment évaluez-vous votre niveau de stress actuel ?
+    options:
+      - value: 1
+        label: Très faible
+        color: "#4CAF50"
+      - value: 5
+        label: Modéré
+        color: "#FFC107"
+      - value: 10
+        label: Extrême
+        color: "#F44336"
+    ai_analysis:
+      threshold_analysis: true
+      urgency_detection: true
+    follow_up:
+      - stress_triggers
+
+  stress_triggers:
+    id: stress_triggers
+    type: multiple_choice
+    question: Quels événements ou situations déclenchent votre stress ?
+    options:
+      - value: work
+        label: Travail
+      - value: family
+        label: Famille
+      - value: health
+        label: Santé
+      - value: finances
+        label: Finances
+      - value: relationships
+        label: Relations sociales
+    follow_up:
+      - stress_symptoms
+
+  stress_symptoms:
+    id: stress_symptoms
+    type: multiple_choice
+    question: Quels symptômes physiques ou mentaux ressentez-vous lors de périodes de stress ?
+    options:
+      - value: palpitations
+        label: Palpitations
+      - value: sweating
+        label: Sueurs
+      - value: insomnia
+        label: Insomnie
+      - value: irritability
+        label: Irritabilité
+      - value: fatigue
+        label: Fatigue
+    follow_up:
+      - holistic_experience
+
+
+
+    # --- Suivi 1 : Modèle de Sommeil ---
+  sleep_pattern:
+    id: sleep_pattern
+    type: multiple_choice
+    question: "Comment décririez-vous votre modèle de sommeil ?"
+    options:
+      - value: trouble_falling_asleep
+        label: "Difficulté à m'endormir"
+      - value: waking_up_at_night
+        label: "Réveils fréquents pendant la nuit"
+      - value: waking_up_too_early
+        label: "Réveil trop tôt le matin"
+      - value: restful_sleep
+        label: "Sommeil réparateur (aucun problème)"
+    follow_up:
+      - sleep_quality
+      - sleep_impact
+
+  sleep_quality:
+    id: sleep_quality
+    type: multiple_choice
+    question: "Comment évaluez-vous la qualité de votre sommeil ?"
+    options:
+      - value: poor
+        label: "Mauvaise qualité"
+      - value: fair
+        label: "Qualité moyenne"
+      - value: good
+        label: "Bonne qualité"
+    follow_up:
+      - sleep_impact
+
+  sleep_impact:
+    id: sleep_impact
+    type: multiple_choice
+    question: "Comment vos troubles du sommeil affectent-ils votre vie quotidienne ?"
+    options:
+      - value: fatigue
+        label: "Fatigue pendant la journée"
+      - value: mood_swings
+        label: "Changements d'humeur"
+      - value: concentration_issues
+        label: "Problèmes de concentration"
+      - value: overall_health
+        label: "Impact général sur la santé"
+    follow_up:
+      - holistic_experience
+
+
+
+### fatigue et énergie
+
+  fatigue_type:
+    id: fatigue_type
+    type: multiple_choice
+    question: "Quel type de fatigue ressentez-vous ?"
+    options:
+      - value: mental_fatigue
+        label: "Fatigue mentale"
+        icon: 🧠
+      - value: physical_fatigue
+        label: "Fatigue physique"
+        icon: 💪
+      - value: emotional_fatigue
+        label: "Fatigue émotionnelle"
+        icon: 😔
+    follow_up:
+      - fatigue_duration
+      - energy_pattern
+
+  fatigue_duration:
+    id: fatigue_duration
+    type: multiple_choice
+    question: "Depuis combien de temps ressentez-vous cette fatigue ?"
+    options:
+      - value: daily
+        label: "Quotidienne"
+      - value: weekly
+        label: "Hebdomadaire"
+      - value: occasional
+        label: "Occasionnelle"
+      - value: constant
+        label: "Constante"
+    follow_up:
+      - energy_pattern
+
+  energy_pattern:
+    id: energy_pattern
+    type: multiple_choice
+    question: "Quel est votre modèle d'énergie au cours de la journée ?"
+    options:
+      - value: high_energy_morning
+        label: "Énergie élevée le matin"
+      - value: high_energy_afternoon
+        label: "Énergie élevée l'après-midi"
+      - value: high_energy_evening
+        label: "Énergie élevée le soir"
+      - value: low_energy_all_day
+        label: "Énergie faible toute la journée"
+      - value: energy_spikes
+        label: "Pics d'énergie occasionnels"
+    follow_up:
+      - holistic_experience
+
+
+
+  # --- Suivi 2 : Émotions ---
+
+  emotion_type:
+    id: emotion_type
+    type: multiple_choice
+    question: "Quel type de difficultés émotionnelles ressentez-vous ?"
+    options:
+      - value: anxiety
+        label: "Anxiété"
+        icon: 😟
+      - value: depression
+        label: "Dépression"
+        icon: 😞
+      - value: stress
+        label: "Stress"
+        icon: 😰
+      - value: sadness
+        label: "Tristesse"
+        icon: 😢
+      - value: anger
+        label: "Colère"
+        icon: 😡
+    follow_up:
+      - emotion_triggers
+      - emotional_support
+
+  emotion_triggers:
+    id: emotion_triggers
+    type: multiple_choice
+    question: "Quels sont les déclencheurs de vos émotions ?"
+    options:
+      - value: work_related
+        label: "Liés au travail"
+        icon: 💼
+      - value: family_issues
+        label: "Problèmes familiaux"
+        icon: 👨‍👩‍👧
+      - value: social_relationships
+        label: "Relations sociales"
+        icon: 🤝
+      - value: financial_stress
+        label: "Stress financier"
+        icon: 💸
+      - value: health_issues
+        label: "Problèmes de santé"
+        icon: 🏥
+    follow_up:
+      - emotional_support
+
+  emotional_support:
+    id: emotional_support
+    type: multiple_choice
+    question: "Avez-vous un support émotionnel dans ces moments ?"
+    options:
+      - value: family_support
+        label: "Soutien familial"
+        icon: 🏠
+      - value: friends_support
+        label: "Soutien des amis"
+        icon: 👯‍♂️
+      - value: professional_support
+        label: "Soutien professionnel"
+        icon: 🧑‍⚕️
+      - value: no_support
+        label: "Pas de soutien"
+        icon: 🚫
+    follow_up:
+      - holistic_experience
+
+  # --- Suivi 3 : Digestif ---
+
+  digestive_symptoms:
+    id: digestive_symptoms
+    type: multiple_choice
+    question: "Quels symptômes digestifs ressentez-vous ?"
+    options:
+      - value: nausea
+        label: "Nausées"
+        icon: 🤢
+      - value: acid_reflux
+        label: "Reflux acide"
+        icon: 🔥
+      - value: bloating
+        label: "Ballonnements"
+        icon: 💨
+      - value: pain_abdomen
+        label: "Douleurs abdominales"
+        icon: 💥
+      - value: loss_of_appetite
+        label: "Perte d'appétit"
+        icon: 🍽️
+    follow_up:
+      - food_triggers
+      - digestive_frequency
+
+  food_triggers:
+    id: food_triggers
+    type: multiple_choice
+    question: "Quels aliments ou boissons déclenchent vos symptômes ?"
+    options:
+      - value: spicy_foods
+        label: "Aliments épicés"
+        icon: 🌶️
+      - value: dairy_products
+        label: "Produits laitiers"
+        icon: 🧀
+      - value: fatty_foods
+        label: "Aliments gras"
+        icon: 🍔
+      - value: caffeine
+        label: "Caféine"
+        icon: ☕
+      - value: alcohol
+        label: "Alcool"
+        icon: 🍷
+    follow_up:
+      - digestive_frequency
+
+  digestive_frequency:
+    id: digestive_frequency
+    type: single_choice
+    question: "À quelle fréquence ressentez-vous ces symptômes digestifs ?"
+    options:
+      - value: daily
+        label: "Quotidiennement"
+        icon: 📅
+      - value: weekly
+        label: "Hebdomadairement"
+        icon: 📆
+      - value: occasionally
+        label: "Occasionnellement"
+        icon: ⏳
+      - value: rarely
+        label: "Rarement"
+        icon: 🕰️
+    follow_up:
+      - holistic_experience
+
+
+  holistic_experience:
+    id: holistic_experience
+    type: scale
+    question: "Quelle est votre expérience avec ces approches ?"
+    options:
+      - value: meditation
+        label: "Méditation"
+        category: "mental"
+        follow_up:
+          - meditation_type
+          - meditation_duration
+          - meditation_benefits
+      - value: yoga
+        label: "Yoga"
+        category: "physical"
+        follow_up:
+          - yoga_style
+          - yoga_frequency
+          - yoga_benefits
+      - value: acupuncture
+        label: "Acupuncture"
+        category: "energetic"
+        follow_up:
+          - acupuncture_frequency
+          - acupuncture_experience
+          - acupuncture_benefits
+      - value: massage
+        label: "Massage"
+        category: "manual"
+        follow_up:
+          - massage_type
+          - massage_frequency
+          - massage_effectiveness
+      - value: naturopathy
+        label: "Naturopathie"
+        category: "natural"
+        follow_up:
+          - naturopathy_type
+          - naturopathy_frequency
+          - naturopathy_benefits
+
+
+  meditation_type:
+    id: meditation_type
+    type: multiple_choice
+    question: "Quel type de méditation pratiquez-vous ?"
+    options:
+      - value: mindfulness
+        label: "Pleine conscience"
+      - value: transcendental
+        label: "Méditation transcendantale"
+      - value: guided
+        label: "Méditation guidée"
+      - value: other
+        label: "Autre"
+    follow_up:
+          - meditation_duration
+
+  meditation_duration:
+    type: single_choice
+    question: "Combien de temps méditez-vous généralement ?"
+    options:
+      - value: "less_than_5"
+        label: "Moins de 5 minutes"
+      - value: "5_to_15"
+        label: "5 à 15 minutes"
+      - value: "15_to_30"
+        label: "15 à 30 minutes"
+      - value: "more_than_30"
+        label: "Plus de 30 minutes"
+    follow_up:
+          - meditation_benefits
+    
+  meditation_benefits:
+    type: multiple_choice
+    question: "Quels bénéfices avez-vous ressentis grâce à la méditation ?"
+    options:
+      - value: "stress_reduction"
+        label: "Réduction du stress"
+      - value: "improved_focus"
+        label: "Amélioration de la concentration"
+      - value: "emotional_balance"
+        label: "Équilibre émotionnel"
+      - value: "better_sleep"
+        label: "Amélioration du sommeil"
+      - value: "general_wellbeing"
+        label: "Bien-être général"
+  
+  yoga_style:
+    id: yoga_style
+    type: multiple_choice
+    question: "Quel style de yoga pratiquez-vous ?"
+    options:
+      - value: hatha
+        label: "Hatha Yoga"
+      - value: vinyasa
+        label: "Vinyasa Yoga"
+      - value: ashtanga
+        label: "Ashtanga Yoga"
+      - value: kundalini
+        label: "Kundalini Yoga"
+      - value: bikram
+        label: "Bikram Yoga"
+      - value: iyengar
+        label: "Iyengar Yoga"
+      - value: other
+        label: "Autre"
+    follow_up:
+      - yoga_frequency
+
+  yoga_frequency:
+    id: yoga_frequency
+    type: single_choice
+    question: "À quelle fréquence pratiquez-vous le yoga ?"
+    options:
+      - value: daily
+        label: "Quotidiennement"
+      - value: weekly
+        label: "Hebdomadairement"
+      - value: monthly
+        label: "Mensuellement"
+      - value: rarely
+        label: "Régulièrement mais rarement"
+    follow_up:
+      - yoga_benefits
+
+  yoga_benefits:
+    id: yoga_benefits
+    type: multiple_choice
+    question: "Quels bénéfices avez-vous ressentis grâce au yoga ?"
+    options:
+      - value: stress_reduction
+        label: "Réduction du stress"
+      - value: flexibility
+        label: "Amélioration de la flexibilité"
+      - value: strength
+        label: "Renforcement musculaire"
+      - value: better_sleep
+        label: "Amélioration du sommeil"
+      - value: focus
+        label: "Amélioration de la concentration"
+      - value: emotional_balance
+        label: "Équilibre émotionnel"
+
+  acupuncture_frequency:
+    id: acupuncture_frequency
+    type: single_choice
+    question: "À quelle fréquence recevez-vous des séances d'acupuncture ?"
+    options:
+      - value: weekly
+        label: "Hebdomadaire"
+      - value: monthly
+        label: "Mensuelle"
+      - value: occasionally
+        label: "Occasionnellement"
+      - value: rarely
+        label: "Régulièrement mais rarement"
+    follow_up:
+      - acupuncture_experience
+
+  acupuncture_experience:
+    id: acupuncture_experience
+    type: multiple_choice
+    question: "Quelle a été votre expérience lors des séances d'acupuncture ?"
+    options:
+      - value: relaxing
+        label: "Relaxant"
+      - value: painful
+        label: "Douloureux"
+      - value: energizing
+        label: "Revigorant"
+      - value: no_effect
+        label: "Aucun effet"
+      - value: healing
+        label: "Guérissant"
+    follow_up:
+      - acupuncture_benefits
+
+  acupuncture_benefits:
+    id: acupuncture_benefits
+    type: multiple_choice
+    question: "Quels bénéfices avez-vous obtenus grâce à l'acupuncture ?"
+    options:
+      - value: pain_relief
+        label: "Soulagement de la douleur"
+      - value: stress_reduction
+        label: "Réduction du stress"
+      - value: sleep_improvement
+        label: "Amélioration du sommeil"
+      - value: energy_boost
+        label: "Augmentation de l'énergie"
+      - value: better_digestion
+        label: "Amélioration de la digestion"
+
+  massage_type:
+    id: massage_type
+    type: multiple_choice
+    question: "Quel type de massage préférez-vous ?"
+    options:
+      - value: swedish
+        label: "Massage suédois"
+      - value: deep_tissue
+        label: "Massage des tissus profonds"
+      - value: aromatherapy
+        label: "Massage aromathérapie"
+      - value: shiatsu
+        label: "Shiatsu"
+      - value: hot_stone
+        label: "Massage aux pierres chaudes"
+    follow_up:
+      - massage_frequency
+
+  massage_frequency:
+    id: massage_frequency
+    type: single_choice
+    question: "À quelle fréquence recevez-vous des massages ?"
+    options:
+      - value: weekly
+        label: "Chaque semaine"
+      - value: biweekly
+        label: "Toutes les deux semaines"
+      - value: monthly
+        label: "Mensuellement"
+      - value: rarely
+        label: "Régulièrement mais rarement"
+    follow_up:
+      - massage_effectiveness
+
+  massage_effectiveness:
+    id: massage_effectiveness
+    type: multiple_choice
+    question: "Quel a été l'impact des massages pour vous ?"
+    options:
+      - value: pain_relief
+        label: "Soulagement de la douleur"
+      - value: relaxation
+        label: "Relaxation"
+      - value: stress_reduction
+        label: "Réduction du stress"
+      - value: increased_mobility
+        label: "Amélioration de la mobilité"
+      - value: mental_clarity
+        label: "Clarté mentale"
+      
+  naturopathy_type:
+    id: naturopathy_type
+    type: multiple_choice
+    question: "Quel type de traitement naturopathique avez-vous utilisé ?"
+    options:
+      - value: herbal_medicine
+        label: "Médicaments à base de plantes"
+      - value: homeopathy
+        label: "Homéopathie"
+      - value: diet
+        label: "Régime alimentaire"
+      - value: detox
+        label: "Détoxification"
+      - value: acupuncture
+        label: "Acupuncture"
+      - value: essential_oils
+        label: "Huiles essentielles"
+    follow_up:
+      - naturopathy_frequency
+
+  naturopathy_frequency:
+    id: naturopathy_frequency
+    type: single_choice
+    question: "À quelle fréquence consultez-vous un naturopathe ?"
+    options:
+      - value: weekly
+        label: "Chaque semaine"
+      - value: monthly
+        label: "Mensuellement"
+      - value: occasionally
+        label: "Occasionnellement"
+      - value: rarely
+        label: "Régulièrement mais rarement"
+    follow_up:
+      - naturopathy_benefits
+
+  naturopathy_benefits:
+    id: naturopathy_benefits
+    type: multiple_choice
+    question: "Quels bienfaits avez-vous obtenus grâce à la naturopathie ?"
+    options:
+      - value: general_health
+        label: "Santé générale"
+      - value: digestive_health
+        label: "Santé digestive"
+      - value: stress_relief
+        label: "Réduction du stress"
+      - value: immune_boost
+        label: "Renforcement du système immunitaire"
+      - value: sleep_improvement
+        label: "Amélioration du sommeil"
