@@ -1,14 +1,4 @@
-1- Ajout d'un système pour détecter les redflags
-
-2- Redirection de l'utilisateur pour reparler, faire le questionnaire en cas de manque d'info
-
-3- recommandations de 2 pratques au lieu d'une seules
-
-4- Ajout des sources.
-
-5- Raffinement de l'agent.
-
-### 🧠 **Holistic AI - Conseiller Bien-être**
+# 🧠 **Holistic AI - Conseiller Bien-être**
 
 Une application web intelligente et complète, **Holistic AI** est conçue pour fournir des recommandations de bien-être holistique hautement personnalisées. En analysant les besoins de l'utilisateur via un texte libre ou un questionnaire adaptatif, l'application identifie la pratique la plus pertinente et génère des conseils détaillés grâce à un agent **RAG** avancé, connecté à une base de connaissances vectorielle. Le système intègre également une **authentification utilisateur** et un mécanisme d'**apprentissage continu** basé sur le feedback.
 
@@ -166,3 +156,4 @@ Voici une vue d’ensemble de la structure du projet et des fichiers importants 
 - **Dockerisation Complète & CI/CD** : Mise en place d’un pipeline d'intégration et de déploiement continu.
 
 ---
+
