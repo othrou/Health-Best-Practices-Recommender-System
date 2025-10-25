@@ -1,4 +1,5 @@
-# 🧠 **Holistic AI - Conseiller Bien-être**
+# 🧠 **Health AI - Conseiller Bien-être**
+
 
 Une application web intelligente et complète, **Holistic AI** est conçue pour fournir des recommandations de bien-être holistique hautement personnalisées. En analysant les besoins de l'utilisateur via un texte libre ou un questionnaire adaptatif, l'application identifie la pratique la plus pertinente et génère des conseils détaillés grâce à un agent **RAG** avancé, connecté à une base de connaissances vectorielle. Le système intègre également une **authentification utilisateur** et un mécanisme d'**apprentissage continu** basé sur le feedback.
 
@@ -159,6 +160,7 @@ Voici une vue d’ensemble de la structure du projet et des fichiers importants 
 - **Dockerisation Complète & CI/CD** : Mise en place d’un pipeline d'intégration et de déploiement continu.
 
 ---
+
 
 
 
